@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist - E-Commerce Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">E-Commerce Store</div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
+                <li><a href="wishlist.html">Wishlist <span id="wishlist-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="wishlist-container">
+        <h1>Your Wishlist</h1>
+        <div id="wishlist-items" class="product-grid">
+            <!-- Wishlist items will be dynamically added here -->
+        </div>
+        <div id="empty-wishlist" class="empty-state" style="display: none;">
+            <i class="far fa-heart" style="font-size: 5rem; color: #6c757d; margin-bottom: 20px;"></i>
+            <p>Your wishlist is currently empty</p>
+            <a href="products.html" class="btn">Explore Products</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="wishlist.html">Wishlist</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: support@ecommercestore.com</p>
+                <p>Phone: +1 (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 E-Commerce Store. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Wishlist Functionality
+        function updateWishlistCount() {
+            const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            const wishlistCountElement = document.getElementById('wishlist-count');
+            const emptyWishlistElement = document.getElementById('empty-wishlist');
+            const wishlistItemsContainer = document.getElementById('wishlist-items');
+            
+            if (wishlistCountElement) {
+                wishlistCountElement.textContent = wishlistItems.length;
+            }
+
+            // Update cart count
+            function updateCartCount() {
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                const cartCountElement = document.getElementById('cart-count');
+                
+                if (cartCountElement) {
+                    const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+                    cartCountElement.textContent = totalQuantity;
+                }
+            }
+            updateCartCount();
+
+            // Display wishlist items or empty state
+            if (wishlistItems.length === 0) {
+                emptyWishlistElement.style.display = 'block';
+                wishlistItemsContainer.innerHTML = '';
+            } else {
+                emptyWishlistElement.style.display = 'none';
+                wishlistItemsContainer.innerHTML = wishlistItems.map(item => `
+                    <div class="product-card" data-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}">
+                        <h3>${item.name}</h3>
+                        <p>${item.price}</p>
+                        <div class="product-actions">
+                            <button onclick="addToCart(this)">Add to Cart</button>
+                            <button onclick="removeFromWishlist(${item.id})">Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function addToCart(buttonElement) {
+            const productCard = buttonElement.closest('.product-card');
+            const image = productCard.querySelector('img').src;
+            const name = productCard.querySelector('h3').textContent;
+            const price = productCard.querySelector('p').textContent;
+            const id = Date.now(); // Generate unique ID
+
+            // Retrieve existing cart items from localStorage
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            // Add the new item
+            cartItems.push({
+                id: id,
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+            
+            // Save updated cart to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Remove item from wishlist
+            const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            const updatedWishlist = wishlistItems.filter(item => item.name !== name);
+            localStorage.setItem('wishlistItems', JSON.stringify(updatedWishlist));
+            
+            // Update displays
+            updateWishlistCount();
+            
+            // Redirect to cart
+            window.location.href = 'cart.html';
+        }
+
+        function removeFromWishlist(itemId) {
+            const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            const updatedWishlist = wishlistItems.filter(item => item.id !== itemId);
+            
+            localStorage.setItem('wishlistItems', JSON.stringify(updatedWishlist));
+            updateWishlistCount();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', updateWishlistCount);
+    </script>
+</body>
+</html>

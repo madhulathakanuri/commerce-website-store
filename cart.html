@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - E-Commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWMB8/OQ1kkAG3bN/KIqQd+NYRxMzMXxhKYyU9+jUxOdddRzwFzjVO1sQHSxjP8pWvPn1rMmtNzTk1Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="logo">E-Commerce Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
+                <li><a href="wishlist.html">Wishlist <span id="wishlist-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="cart-page">
+            <h1>Your Shopping Cart</h1>
+            
+            <div class="cart-container">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be dynamically populated -->
+                </div>
+
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-details">
+                        <p>Subtotal: <span id="cart-subtotal">$0.00</span></p>
+                        <p>Tax: <span id="cart-tax">$0.00</span></p>
+                        <p>Total: <span id="cart-total">$0.00</span></p>
+                    </div>
+
+                    <button id="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            2025 E-Commerce Store. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const subtotalElement = document.getElementById('cart-subtotal');
+            const taxElement = document.getElementById('cart-tax');
+            const totalElement = document.getElementById('cart-total');
+            const checkoutButton = document.getElementById('checkout-btn');
+
+            // Retrieve cart items from localStorage
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            if (cartItemsContainer) {
+                if (cartItems.length > 0) {
+                    cartItemsContainer.innerHTML = cartItems.map(item => `
+                        <div class="cart-item" data-id="${item.id}">
+                            <div class="cart-item-image">
+                                <img src="${item.image}" alt="${item.name}">
+                            </div>
+                            <div class="cart-item-details">
+                                <h3>${item.name}</h3>
+                                <p class="cart-item-price">${item.price}</p>
+                                <div class="cart-item-quantity">
+                                    <button onclick="updateQuantity(${item.id}, -1)">-</button>
+                                    <span>${item.quantity}</span>
+                                    <button onclick="updateQuantity(${item.id}, 1)">+</button>
+                                </div>
+                                <button class="remove-item" onclick="removeFromCart(${item.id})">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    // Calculate totals
+                    const subtotal = cartItems.reduce((sum, item) => sum + parseFloat(item.price.replace('$', '')) * item.quantity, 0);
+                    const tax = subtotal * 0.1;
+                    const total = subtotal + tax;
+
+                    subtotalElement.textContent = '$${subtotal.toFixed(2)}';
+                    taxElement.textContent = '$${tax.toFixed(2)}';
+                    totalElement.textContent = '$${total.toFixed(2)}';
+                    
+                    // Enable checkout button
+                    checkoutButton.disabled = false;
+                } else {
+                    cartItemsContainer.innerHTML = `
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h2>Your Cart is Empty</h2>
+                            <p>Looks like you haven't added any items to your cart yet.</p>
+                            <a href="products.html" class="button">Continue Shopping</a>
+                        </div>
+                    `;
+                    
+                    // Disable checkout button
+                    subtotalElement.textContent = '$0.00';
+                    taxElement.textContent = '$0.00';
+                    totalElement.textContent = '$0.00';
+                    checkoutButton.disabled = true;
+                }
+            }
+        }
+
+        function updateQuantity(itemId, change) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            const itemIndex = cartItems.findIndex(item => item.id === itemId);
+            
+            if (itemIndex !== -1) {
+                cartItems[itemIndex].quantity += change;
+                
+                // Remove item if quantity becomes 0
+                if (cartItems[itemIndex].quantity <= 0) {
+                    cartItems.splice(itemIndex, 1);
+                }
+                
+                // Save updated cart
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                
+                // Re-render cart and update count
+                renderCartItems();
+                updateCartCount();
+            }
+        }
+
+        function removeFromCart(itemId) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            // Remove the item with the specified ID
+            cartItems = cartItems.filter(item => item.id !== itemId);
+            
+            // Save updated cart
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Re-render cart and update count
+            renderCartItems();
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            
+            if (cartCountElement) {
+                const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.textContent = totalQuantity;
+            }
+        }
+
+        function proceedToCheckout() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            if (cartItems.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            // In a real application, this would redirect to a checkout page
+            alert('Proceeding to checkout...\nTotal items: ' + 
+                cartItems.reduce((total, item) => total + item.quantity, 0));
+        }
+
+        // Add some additional styling for cart page
+        const cartStyles = document.createElement('style');
+        cartStyles.textContent = `
+            .cart-container {
+                display: flex;
+                justify-content: space-between;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .cart-items {
+                width: 65%;
+            }
+
+            .cart-summary {
+                width: 30%;
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 8px;
+            }
+
+            .cart-item {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #e0e0e0;
+                padding: 15px 0;
+            }
+
+            .cart-item-image {
+                width: 100px;
+                margin-right: 20px;
+            }
+
+            .cart-item-image img {
+                max-width: 100%;
+                border-radius: 8px;
+            }
+
+            .cart-item-details {
+                flex-grow: 1;
+            }
+
+            .cart-item-quantity {
+                display: flex;
+                align-items: center;
+                margin: 10px 0;
+            }
+
+            .cart-item-quantity button {
+                width: 30px;
+                height: 30px;
+                background-color: #f0f0f0;
+                border: none;
+                cursor: pointer;
+            }
+
+            .cart-item-quantity span {
+                margin: 0 10px;
+            }
+
+            .remove-item {
+                background-color: #dc3545;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .empty-cart {
+                text-align: center;
+                padding: 50px;
+            }
+
+            .empty-cart i {
+                font-size: 5rem;
+                color: #6c757d;
+                margin-bottom: 20px;
+            }
+
+            #checkout-btn {
+                width: 100%;
+                padding: 15px;
+                background-color: #28a745;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            #checkout-btn:disabled {
+                background-color: #6c757d;
+                cursor: not-allowed;
+            }
+        `;
+        document.head.appendChild(cartStyles);
+
+        // Initialize cart on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCartItems();
+            updateCartCount();
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWMB8/OQ1kkAG3bN/KIqQd+NYRxMzMXxhKYyU9+jUxOdddRzwFzjVO1sQHSxjP8pWvPn1rMmtNzTk1Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .profile-picture {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ddd;
+        }
+
+        .profile-picture input {
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .address-list, .payment-methods {
+            list-style: none;
+            padding: 0;
+        }
+
+        .address-item, .payment-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Additional styles for order tracking and recently viewed */
+        .order-tracking-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .order-list, .recently-viewed {
+            width: 48%;
+        }
+
+        .order-item, .recently-viewed-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+
+        .order-status.delivered {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .order-status.processing {
+            background-color: #ffc107;
+            color: black;
+        }
+
+        .order-status.shipped {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .recently-viewed-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .recently-viewed-item .product-details {
+            display: flex;
+            align-items: center;
+        }
+
+        .track-order-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+       
+
+        .quick-view-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .quick-view-content {
+            background-color: white;
+            max-width: 800px;
+            width: 90%;
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .quick-view-image {
+            width: 50%;
+        }
+
+        .quick-view-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .quick-view-details {
+            width: 50%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quick-view-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #dc3545;
+            cursor: pointer;
+        }
+
+        .quick-view-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .quick-view-actions .button.secondary {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">E-Commerce Store</div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
+                <li><a href="wishlist.html">Wishlist <span id="wishlist-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>My Profile</h2>
+
+            <div class="profile-picture section">
+                <img id="profile-img" src="default-profile.png" alt="Profile Picture">
+                <input type="file" id="profile-upload" accept="image/*">
+            </div>
+
+            <div class="section">
+                <h3>Personal Information</h3>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" value="JohnDoe">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" value="john.doe@example.com">
+                </div>
+                <button class="button" onclick="savePersonalInfo()">Save</button>
+            </div>
+
+            <div class="section order-tracking-section">
+                <div class="order-list">
+                    <h3>Order Tracking</h3>
+                    <div id="order-list">
+                        <!-- Orders will be dynamically populated -->
+                    </div>
+                </div>
+            </div>
+
+        
+
+            <div class="section">
+                <h3>Address Management</h3>
+                <ul class="address-list">
+                    <li class="address-item">123 Main St, City, Country <button class="button">Edit</button></li>
+                    <li class="address-item">456 Second St, City, Country <button class="button">Edit</button></li>
+                </ul>
+                <button class="button">Add Address</button>
+            </div>
+
+            <div class="section">
+                <h3>Payment Methods</h3>
+                <ul class="payment-methods">
+                    <li class="payment-item">UPI: john@upi <button class="button">Edit</button></li>
+                    <li class="payment-item">Card: **** **** **** 1234 <button class="button">Edit</button></li>
+                </ul>
+                <button class="button">Add Payment Method</button>
+            </div>
+
+            <div class="section">
+                <h3>Change Password</h3>
+                <div class="form-group">
+                    <label for="current-password">Current Password:</label>
+                    <input type="password" id="current-password">
+                </div>
+                <div class="form-group">
+                    <label for="new-password">New Password:</label>
+                    <input type="password" id="new-password">
+                </div>
+                <button class="button">Change Password</button>
+            </div>
+
+            <div class="section">
+                <button class="button" style="background-color: #dc3545;" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            2025 E-Commerce Store. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("profile-upload").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("profile-img").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function savePersonalInfo() {
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            alert('Personal info saved!\nUsername: ${username}\nEmail: ${email}');
+        }
+
+        function logout() {
+            // Clear login status and user data
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('currentUser');
+            
+            // Use replace to prevent back button access
+            window.location.replace('login.html');
+        }
+
+        // Add event listener to check login status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                // Redirect to login page if not logged in
+                window.location.replace('login.html');
+            }
+        });
+
+        // Order Tracking and Recently Viewed Products
+        const orderData = [
+            {
+                id: '#12345',
+                date: '2025-01-10',
+                total: '$199.99',
+                status: 'Delivered',
+                statusClass: 'delivered',
+                items: [
+                    { name: 'Wireless Headphones', quantity: 1 },
+                    { name: 'Phone Case', quantity: 2 }
+                ]
+            },
+            {
+                id: '#12346',
+                date: '2025-01-15',
+                total: '$129.50',
+                status: 'Processing',
+                statusClass: 'processing',
+                items: [
+                    { name: 'Smart Watch', quantity: 1 }
+                ]
+            }
+        ];
+
+        const recentlyViewedProducts = [
+            {
+                id: 1,
+                name: 'Bluetooth Speaker',
+                price: '$79.99',
+                image: 'https://via.placeholder.com/100x100?text=Speaker'
+            },
+            {
+                id: 2,
+                name: 'Fitness Tracker',
+                price: '$49.99',
+                image: 'https://via.placeholder.com/100x100?text=Tracker'
+            },
+            {
+                id: 3,
+                name: 'Wireless Charger',
+                price: '$29.99',
+                image: 'https://via.placeholder.com/100x100?text=Charger'
+            }
+        ];
+
+        function renderOrderTracking() {
+            const orderList = document.getElementById('order-list');
+            orderList.innerHTML = orderData.map(order => `
+                <div class="order-item">
+                    <div>
+                        <strong>${order.id}</strong>
+                        <p>${order.date} | ${order.total}</p>
+                        <span class="order-status ${order.statusClass}">${order.status}</span>
+                    </div>
+                    <button class="track-order-btn" onclick="showOrderDetails('${order.id}')">Details</button>
+                </div>
+            `).join('');
+        }
+
+        function renderRecentlyViewed() {
+            const recentlyViewedList = document.getElementById('recently-viewed-list');
+            recentlyViewedList.innerHTML = recentlyViewedProducts.map(product => `
+                <div class="recently-viewed-item">
+                    <div class="product-details">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div>
+                            <strong>${product.name}</strong>
+                            <p>${product.price}</p>
+                        </div>
+                    </div>
+                    <button class="track-order-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                </div>
+            `).join('');
+        }
+
+        function showOrderDetails(orderId) {
+            const order = orderData.find(o => o.id === orderId);
+            if (order) {
+                let itemsList = order.items.map(item =>' ${item.quantity} x ${item.name}').join(', ');
+                alert('Order Details:\nOrder ID: ${order.id}\nDate: ${order.date}\nTotal: ${order.total}\nStatus: ${order.status}\nItems: ${itemsList}');
+            }
+        }
+
+        function addToCart(itemId) {
+            const item = recentlyViewedProducts.find(p => p.id === itemId);
+            if (item) {
+                // Retrieve existing cart items from localStorage
+                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                
+                // Check if item is already in cart
+                const existingItemIndex = cartItems.findIndex(cartItem => cartItem.id === itemId);
+                
+                if (existingItemIndex !== -1) {
+                    // If item exists, increase its quantity
+                    cartItems[existingItemIndex].quantity += 1;
+                } else {
+                    // If item is not in cart, add it with quantity 1
+                    cartItems.push({
+                        ...item,
+                        quantity: 1
+                    });
+                }
+                
+                // Save updated cart to localStorage
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                
+                // Update cart count in the header
+                updateCartCount();
+                
+                // Show confirmation toast
+                showToast('{item.name} added to cart');
+            }
+        }
+
+        function updateCartCount() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            
+            if (cartCountElement) {
+                const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.textContent = totalQuantity;
+            }
+        }
+
+        function showToast(message) {
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            
+            // Add styles for toast
+            const toastStyles = document.createElement('style');
+            toastStyles.textContent = `
+                .toast {
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background-color: #28a745;
+                    color: white;
+                    padding: 15px;
+                    border-radius: 5px;
+                    z-index: 1000;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                    animation: toast-animation 0.5s ease;
+                }
+
+                @keyframes toast-animation {
+                    0% { opacity: 0; transform: translateX(100%); }
+                    100% { opacity: 1; transform: translateX(0); }
+                }
+            `;
+            
+            // Append styles and toast to body
+            document.head.appendChild(toastStyles);
+            document.body.appendChild(toast);
+            
+            // Remove toast after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(toast);
+                if (toastStyles.parentElement) {
+                    toastStyles.parentElement.removeChild(toastStyles);
+                }
+            }, 3000);
+        }
+
+        // Wishlist Data and Functionality
+        const wishlistItems = [
+            {
+                id: 1,
+                name: 'Wireless Noise Cancelling Headphones',
+                price: '$249.99',
+                image: 'https://via.placeholder.com/200x200?text=Headphones',
+                description: 'Premium over-ear headphones with advanced noise cancellation'
+            },
+            {
+                id: 2,
+                name: 'Smart Fitness Tracker Watch',
+                price: '$179.50',
+                image: 'https://via.placeholder.com/200x200?text=Fitness+Watch',
+                description: 'Advanced fitness tracking with heart rate monitor'
+            },
+            {
+                id: 3,
+                name: 'Portable Bluetooth Speaker',
+                price: '$99.99',
+                image: 'https://via.placeholder.com/200x200?text=Speaker',
+                description: 'Waterproof speaker with 360-degree sound'
+            }
+        ];
+
+        function renderWishlist() {
+            const wishlistContainer = document.getElementById('wishlist-container');
+            
+            if (wishlistItems.length === 0) {
+                wishlistContainer.innerHTML = `
+                    <div class="wishlist-empty">
+                        <i class="fas fa-heart-broken"></i>
+                        <h3>Your Wishlist is Empty</h3>
+                        <p>Explore our products and add some items you love!</p>
+                        <button class="button" onclick="navigateToShop()">Shop Now</button>
+                    </div>
+                `;
+                return;
+            }
+
+            wishlistContainer.innerHTML = `
+                <div class="wishlist-grid">
+                    ${wishlistItems.map(item => `
+                        <div class="wishlist-item" data-id="${item.id}">
+                            <div class="wishlist-item-image">
+                                <img src="${item.image}" alt="${item.name}">
+                                <div class="wishlist-item-overlay">
+                                    <button class="wishlist-quick-view" onclick="quickViewItem(${item.id})">Quick View</button>
+                                </div>
+                            </div>
+                            <div class="wishlist-item-details">
+                                <div class="wishlist-item-header">
+                                    <h4 class="wishlist-item-name">${item.name}</h4>
+                                    <button class="wishlist-remove-btn" onclick="removeFromWishlist(${item.id})">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                <p class="wishlist-item-description">${item.description}</p>
+                                <div class="wishlist-item-footer">
+                                    <span class="wishlist-item-price">${item.price}</span>
+                                    <button class="button wishlist-add-to-cart" onclick="addToCart(${item.id})">
+                                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function quickViewItem(itemId) {
+            const item = wishlistItems.find(i => i.id === itemId);
+            if (item) {
+                const quickViewModal = document.createElement('div');
+                quickViewModal.className = 'quick-view-modal';
+                quickViewModal.innerHTML = `
+                    <div class="quick-view-content">
+                        <button class="quick-view-close" onclick="this.closest('.quick-view-modal').remove()">&times;</button>
+                        <div class="quick-view-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="quick-view-details">
+                            <h2>${item.name}</h2>
+                            <p class="quick-view-description">${item.description}</p>
+                            <div class="quick-view-price">${item.price}</div>
+                            <div class="quick-view-actions">
+                                <button class="button" onclick="addToCart(${item.id})">Add to Cart</button>
+                                <button class="button secondary" onclick="this.closest('.quick-view-modal').remove()">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(quickViewModal);
+            }
+        }
+
+        function removeFromWishlist(itemId) {
+            const index = wishlistItems.findIndex(i => i.id === itemId);
+            if (index !== -1) {
+                wishlistItems.splice(index, 1);
+                renderWishlist();
+            }
+        }
+
+        function navigateToShop() {
+            // In a real implementation, this would navigate to the shop page
+            alert('Navigating to shop...');
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            renderOrderTracking();
+            renderRecentlyViewed();
+            renderWishlist();
+            updateCartCount();
+        }
+    </script>
+</body>
+</html>

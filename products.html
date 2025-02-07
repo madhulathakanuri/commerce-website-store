@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - E-Commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWMB8/OQ1kkAG3bN/KIqQd+NYRxMzMXxhKYyU9+jUxOdddRzwFzjVO1sQHSxjP8pWvPn1rMmtNzTk1Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">E-Commerce Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
+                <li><a href="wishlist.html">Wishlist <span id="wishlist-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="all-products">
+            <div class="products-header">
+                <h2>Our Products</h2>
+                <div class="product-categories">
+                    <button class="category-btn active" data-category="all">All Products</button>
+                    <button class="category-btn" data-category="electronics">Electronics</button>
+                    <button class="category-btn" data-category="clothing">Clothing</button>
+                    <button class="category-btn" data-category="home">Home & Decor</button>
+                </div>
+            </div>
+            <div class="product-grid" id="all-products">
+                <!-- Electronics Products -->
+                <div class="product-card" data-category="electronics">
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTPT3RKLcUA8zy9R35LBe81KecK9iRpDGNKK7oTQMD_2vVBxhh_HVFGpqali3tgcIIzS0hh3tvMJDsdaIfj58SEgH4GMFcVnc3nt-KzTzRBLh0vLc7LqNe4" alt="Smartphone">
+                    <h3>Smartphone X</h3>
+                    <p>$599.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://m.media-amazon.com/images/I/510uTHyDqGL._AC_SS230_.jpg">
+                    <h3>Laptop Pro</h3>
+                    <p>$1,299.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://m.media-amazon.com/images/I/61grOKkDUvL._SX679_.jpg">
+                    <h3>Wireless Earbuds Pro</h3>
+                    <p>$129.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://hammeronline.in/cdn/shop/files/Pulse2.0.webp?v=1694245699">
+                    <h3>Fitness Smart Watch</h3>
+                    <p>$199.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://m.media-amazon.com/images/I/710W6ATCrKL._SX679_.jpg">
+                    <h3>portable speaker</h3>
+                    <p>$99.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5kFOLS-kOb2sNGIFrevuEfYWmgmZ4yiXmzQ&s">
+                    <h3>Earphones</h3>
+                    <p>$69.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://aabo.in/cdn/shop/files/gold.jpg?v=1735636974&width=1946">
+                    <h3> Smart ring</h3>
+                    <p>$88.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://m.media-amazon.com/images/I/71iKNJ6rVIL.SS700.jpg">
+                    <h3>Canon Dslr</h3>
+                    <p>$199.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://m.media-amazon.com/images/I/417soAz2lRL._SX300_SY300_QL70_FMwebp_.jpg">
+                    <h3>Projector</h3>
+                    <p>$1299.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://m.media-amazon.com/images/I/31z56sOYrPL._SX300_SY300_QL70_FMwebp_.jpg">
+                    <h3>printer</h3>
+                    <p>$1199.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+
+                <!-- Clothing Products -->
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTtKRXChrl-4JGmbHsKKqi2M26eZvhXth8FwpoOvEDgLlSPYekZfxJ6gGaLSo-Ukk0d38FWA3zQr4wPSKIWGmsL8Glt811fzYfdyQvua3pCWuNDhWlHo5AayTON6ZJCje9VkvyO1g&usqp=CAc">
+                    <h3>Classic T-Shirt</h3>
+                    <p>$29.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS4p2HHIssSY_C-Xc8e6eCWf7c42j-D4uHaRmYD24KS8UfW4v2d42-j2BJ2hmyzAlPxPzf03nXuv-u7ulH0YfZc8K_I6owquI2uWYO-75AVNVY6vtgWA4W-bw&usqp=CAc">
+                    <h3>Slim Fit Jeans</h3>
+                    <p>$59.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ3uejm-jcri11B03Ex5XZS74m1t6jPM7fNwgZV93IgQy3kDzMfj0vTYdyVq55yrgogGu0sjwQAnPti2S5CWPHYGZHWoDQVxtIcfWHfTSMuKuRUn_SUIsOZ&usqp=CAc">
+                    <h3>Comfortable Hoodie</h3>
+                    <p>$49.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR9gpj2q9zJF68Uw-BNrtyUzu7H2r7LuKpB2R6c9io7olBGnTv3V4_1DLt5h_0wqHvEhbjnKUm3SQ1d84IB4DjpkpKmiigshbok1xTKPn4RnQiB-VmhS3khBQykMQZkkluGbuBGjhhM7Zg&usqp=CAc">
+                    <h3>Classic Denim Jacket</h3>
+                    <p>$89.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="data:image/jpeg;base64,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">
+                    <h3>FormalTrousers</h3>
+                    <p>$69.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dwc8ead8b8/original/90_1016155-1A11263_2EJ00_14_HoundstoothWoolSingle~BreastedBlazer-Blazers~~Suits-Versace-online-store_0_2.jpg?sw=850&q=85&strip=true">
+                    <h3>Blazers</h3>
+                    <p>$79.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTEabe5agi6Sa-OejCklkESSj8nIxDp8UUOCm7E4CapcCx6dGUdIbi8xRh3p9eZCQlpbY_oTH31o9ciUrxyvbZGEtJRrQ8VjIAIUYvIfEfwy0sFyyAmpKajPw&usqp=CAc">
+                    <h3>kurta set</h3>
+                    <p>$69.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSmGs9pMUbiEQWYuCkeClkmfBNk9RcEgZlD39A2gFnGf5Xhylgx0eje-g3pbi0wBBdKIEzrhefUDWuxRob4nJU6FsRyE5ML8MWR8kd6BJVRgzGZGVZ6b2PZ3A&usqp=CAc">
+                    <h3>formal shirts</h3>
+                    <p>$69.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQztfsa5v1-15IocmJYwRexUfM54AkE0fXrolHxPaNksjjwXy6vvuf1vv2I8BcH8awUwkm4yjMwOQ0NYKk7cWyNBONsrO0HIDYaBr4qD8L5zVdbVkht8hKp2ut9ygZhpIoa5HJrolfN4Jo&usqp=CAc">
+                    <h3>rain jackets</h3>
+                    <p>$59.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://plumstories.com/cdn/shop/files/plum_6_a4296a66-1d2a-4990-8a6b-f804048b3f68.jpg?v=1733809139&width=1080">
+                    <h3>shorts</h3>
+                    <p>$39.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- Home & Decor Products -->
+                <div class="product-card" data-category="home">
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQcvlVu-tQJHYZ2ofFz3V4bL_wDvHMaQKba5SbWYgA-glxCuAxp4xHuyQ3wPnFyRpCso3CsoUBd0fkJQGCHX2vsQaSbHspLtcqdPD9sq9Zs85MX-F6BW0Gl&usqp=CAc">
+                    <h3>Modern Table Lamp</h3>
+                    <p>$89.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://khaabka.com/cdn/shop/products/IMG_5712Large.jpg?v=1664525213&width=1800">
+                    <h3>Decorative Cushion</h3>
+                    <p>$24.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://sharmahomedecor.com/wp-content/uploads/2024/03/WALL-ART-_-MIRROR-1.pdf-image-034-e1733158079468.jpg">
+                    <h3>Modern Wall Art</h3>
+                    <p>$69.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://cdn.shopify.com/s/files/1/0632/2526/6422/products/pots-and-planters-ugaoo-phoenix-white-ceramic-pot-1.jpg?v=1715948046&width=600">
+                    <h3>Ceramic Plant Pot</h3>
+                    <p>$34.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRQl1iGyJDVp-P8Wtpzc8IIFaQS9eVnwDqQHRwlhh6EsMXdwEkw6rnsAMZomQ3Gr-7j3cC2fg3fZ6iFcHFpdUDcM9WOR1i9uhH2q1-HCI7U&usqp=CAc">
+                    <h3>wooden wall Hanger</h3>
+                    <p>$34.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQeGoAaJfNlrNXa_jTdE0ZcZL2WNZ1SZ6rHoFtVvCNS8-mYWGh91C5JSEpcqwOG3J5u5ak5NGgVYOSpccaW9Kubp27c6uXZ5hNJ5Mxt5309fTgpO3qHM_Wp8zMNe0-3TAWsPOMsZQ&usqp=CAc">
+                    <h3>candle holder</h3>
+                    <p>$34.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTKYqWEh9cualM5-M7A3YHcNG7kTVD0SyruAwIak21QROuoS8C0keh-b3il0u1ANtMKFli940NgNdES7QwJXKY_j9mkm-NOLD2BYehxrhY4n2x5yl48hKriWj2GCG2KA-If-vojRSCfqg&usqp=CAc">
+                    <h3>peacock wall decor </h3>
+                    <p>$34.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTh2FK8mIE0wegC7v5-zgCq600GGSivYNymv_5lpWcPFu1HrGwfNPCFfQLHiqvrv0V_D1loHNmJKHQPmGrNNOvHTBQv7zUHyn2qVFhtKNPQzkvAD9oWXttG&usqp=CAc">
+                    <h3>side table </h3>
+                    <p>$64.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSACqNX4YBsMHbyzqV4VRBvZbf03F1R3QtFzpHdfohsGsx5h7uPtkky7_fVhpuVKEMwUeOlpQjIZWIedGWdklqaT_kImk-scXajNYO_M3M&usqp=CAc">
+                    <h3>Deion Side Table</h3>
+                    <p>$44.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            2025 E-Commerce Store. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Cart Functionality
+        function updateCartCount() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            
+            if (cartCountElement) {
+                const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.textContent = totalQuantity;
+            }
+        }
+
+        function addToCart(productCard) {
+            // Get product details from the card
+            const image = productCard.querySelector('img').src;
+            const name = productCard.querySelector('h3').textContent;
+            const price = productCard.querySelector('p').textContent;
+            const id = Date.now(); // Generate unique ID
+
+            // Retrieve existing cart items from localStorage
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            // Add the new item
+            cartItems.push({
+                id: id,
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+            
+            // Save updated cart to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show toast notification
+            showToast($,{name} ,addedtocart);
+        }
+
+        function showToast(message) {
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            
+            // Add styles for toast
+            const toastStyles = document.createElement('style');
+            toastStyles.textContent = `
+                .toast {
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background-color: #28a745;
+                    color: white;
+                    padding: 15px;
+                    border-radius: 5px;
+                    z-index: 1000;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                    animation: toast-animation 0.5s ease;
+                }
+
+                @keyframes toast-animation {
+                    0% { opacity: 0; transform: translateX(100%); }
+                    100% { opacity: 1; transform: translateX(0); }
+                }
+            `;
+            
+            // Append styles and toast to body
+            document.head.appendChild(toastStyles);
+            document.body.appendChild(toast);
+            
+            // Remove toast after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(toast);
+                if (toastStyles.parentElement) {
+                    toastStyles.parentElement.removeChild(toastStyles);
+                }
+            }, 3000);
+        }
+
+        // Wishlist Functionality
+        function updateWishlistCount() {
+            const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            const wishlistCountElement = document.getElementById('wishlist-count');
+
+            if (wishlistCountElement) {
+                wishlistCountElement.textContent = wishlistItems.length;
+            }
+        }
+
+        function addToWishlist(productCard) {
+            // Get product details from the card
+            const image = productCard.querySelector('img').src;
+            const name = productCard.querySelector('h3').textContent;
+            const price = productCard.querySelector('p').textContent;
+            const id = Date.now(); // Generate unique ID
+
+            // Retrieve existing wishlist items from localStorage
+            let wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            
+            // Check if item is already in wishlist
+            const isAlreadyInWishlist = wishlistItems.some(item => item.name === name);
+            
+            if (!isAlreadyInWishlist) {
+                // Add the new item
+                wishlistItems.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    image: image
+                });
+                
+                // Save updated wishlist to localStorage
+                localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
+                
+                // Update wishlist count
+                updateWishlistCount();
+                
+                // Show toast notification
+                showToast($,{name}, addedtowishlist);
+            } else {
+                // Show toast notification that item is already in wishlist
+                showToast($,{name}, isalready in yourwishlist);
+            }
+        }
+
+        // Category Filtering
+        function filterProducts(category) {
+            const productCards = document.querySelectorAll('.product-card');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+
+            // Remove active class from all buttons
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Find and activate the correct button
+            const activeButton = Array.from(categoryButtons).find(btn => 
+                btn.getAttribute('data-category') === category
+            );
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            // Filter products
+            productCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Add event listeners to Add to Cart buttons and category buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartButtons = document.querySelectorAll('.product-actions button:first-child');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    addToCart(productCard);
+                });
+            });
+
+            // Add event listeners to category buttons
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const category = button.getAttribute('data-category');
+                    filterProducts(category);
+                });
+            });
+
+            // Display all products by default
+            filterProducts('all');
+
+            // Update cart count on page load
+            updateCartCount();
+
+            // Wishlist Functionality
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                // Create Wishlist button
+                const wishlistButton = document.createElement('button');
+                wishlistButton.innerHTML = '<i class="far fa-heart"></i>'; // Heart icon
+                wishlistButton.classList.add('wishlist-btn');
+                wishlistButton.addEventListener('click', function() {
+                    addToWishlist(card);
+                });
+
+                // Add Wishlist button to product actions
+                const productActions = card.querySelector('.product-actions');
+                if (productActions) {
+                    productActions.appendChild(wishlistButton);
+                }
+            });
+
+            // Update wishlist count on page load
+            updateWishlistCount();
+        });
+    </script>
+</body>
+</html>

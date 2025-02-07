@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWMB8/OQ1kkAG3bN/KIqQd+NYRxMzMXxhKYyU9+jUxOdddRzwFzjVO1sQHSxjP8pWvPn1rMmtNzTk1Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">E-Commerce Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="account.html">Account</a></li>
+                <li><a href="cart.html">Cart <span id="cart-count">0</span></a></li>
+                <li><a href="wishlist.html">Wishlist <span id="wishlist-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="promotional-banner">
+                <h1>Mega Sale! Up to 50% Off</h1>
+                <p>Shop now and save big on all categories!</p>
+                <a href="products.html" class="cta-button">Shop Now</a>
+            </div>
+        </section>
+
+        <section class="categories">
+            <h2>Shop by Category</h2>
+            <div class="category-grid">
+                <div class="product-card" data-category="electronics">
+                    <img src="https://thumbs.dreamstime.com/b/sleek-neon-lit-banner-showcasing-luxury-electronics-cyber-week-includes-high-performance-laptops-gaming-gear-black-338879665.jpg">
+                    <h3>Electronics</h3>
+                    <div class="product-actions">
+                        <a href="products.html?category=electronics" class="shop-now-btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://eitherview.com/wp-content/uploads/2023/02/shop-clothing-clothes-hanger-boutique-1024x684.jpg" alt="Clothing">
+                    <h3>Clothing</h3>
+                    <div class="product-actions">
+                        <a href="products.html?category=clothing" class="shop-now-btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="product-card" data-category="groceries">
+                    <img src="https://media.istockphoto.com/id/1283712032/photo/cardboard-box-filled-with-non-perishable-foods-on-wooden-table-high-angle-view.jpg?s=612x612&w=0&k=20&c=7B2cUwQB2LeBmIh5JElkO5DoE7GRq-CRVmERsMSJoVY=" alt="Groceries">
+                    <h3>Groceries</h3>
+                    <div class="product-actions">
+                        <a href="products.html?category=groceries" class="shop-now-btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://images.woodenstreet.de/image/data/Blog%20images/7thapril/2.jpg" alt="Home Products">
+                    <h3>Home Products</h3>
+                    <div class="product-actions">
+                        <a href="products.html?category=home" class="shop-now-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="all-products">
+            <div class="products-header">
+                <h2>Our Products</h2>
+                <div class="product-categories">
+                    <button class="category-btn active" data-category="all">All Products</button>
+                    <button class="category-btn" data-category="electronics">Electronics</button>
+                    <button class="category-btn" data-category="clothing">Clothing</button>
+                    <button class="category-btn" data-category="home">Home & Decor</button>
+                </div>
+            </div>
+            <div class="product-grid" id="all-products">
+                <div class="product-card" data-category="electronics">
+                    <img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?cs=srgb&dl=pexels-noah-erickson-97554-404280.jpg&fm=jpg" alt="Smartphone">
+                    <h3>Smartphone X</h3>
+                    <p>$599.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?cs=srgb&dl=pexels-pixabay-18105.jpg&fm=jpg" alt="Laptop">
+                    <h3>Laptop Pro</h3>
+                    <p>$1,299.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhR-x1tooeM_X4hvSNHEc1_vFjNBRPZmb0Nw&s" alt="T-Shirt">
+                    <h3>Classic T-Shirt</h3>
+                    <p>$29.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG9tZSUyMGRlY29yfGVufDB8fDB8fHww" alt="Home Decor">
+                    <h3>Modern Table Lamp</h3>
+                    <p>$89.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRtbZhS93EGbCDqPUrC5UI1vBTrtjwMVv_iw&s" alt="Smart Watch">
+                    <h3>Fitness Smart Watch</h3>
+                    <p>$199.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="electronics">
+                    <img src="https://images.pexels.com/photos/3780681/pexels-photo-3780681.jpeg?cs=srgb&dl=pexels-soulful-pizza-2080276-3780681.jpg&fm=jpg" alt="Wireless Earbuds">
+                    <h3>Wireless Earbuds Pro</h3>
+                    <p>$129.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2uU0zfzgXp_ESzkbuMxnUMMsNxCr00lzHwA&s" alt="Jeans">
+                    <h3>Slim Fit Jeans</h3>
+                    <p>$59.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="home">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8bfDPZSa6qPJvmqka6j0uUFKKZmghWLnBFQ&s" alt="Cushion">
+                    <h3>Decorative Cushion</h3>
+                    <p>$24.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-category="clothing">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAmIGE1pNQHkKcat3_Ult1gR0anAzdynfu5A&s" alt="Comfortable Hoodie">
+                    <h3>Comfort Plus Hoodie</h3>
+                    <p>$49.99</p>
+                    <div class="product-actions">
+                        <button>Add to Cart</button>
+                        <button>Buy Now</button>
+                        <button class="wishlist-btn">♡</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            2025 E-Commerce Store. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Cart Functionality
+        function updateCartCount() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartCountElement = document.getElementById('cart-count');
+            
+            if (cartCountElement) {
+                const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+                cartCountElement.textContent = totalQuantity;
+            }
+        }
+
+        function addToCart(productCard) {
+            // Get product details from the card
+            const image = productCard.querySelector('img').src;
+            const name = productCard.querySelector('h3').textContent;
+            const price = productCard.querySelector('p').textContent;
+            const id = Date.now(); // Generate unique ID
+
+            // Retrieve existing cart items from localStorage
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            // Add the new item
+            cartItems.push({
+                id: id,
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            });
+            
+            // Save updated cart to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Show toast notification
+            showToast('${name} added to cart');
+        }
+
+        function showToast(message) {
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            
+            // Add styles for toast
+            const toastStyles = document.createElement('style');
+            toastStyles.textContent = `
+                .toast {
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background-color: #28a745;
+                    color: white;
+                    padding: 15px;
+                    border-radius: 5px;
+                    z-index: 1000;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                    animation: toast-animation 0.5s ease;
+                }
+
+                @keyframes toast-animation {
+                    0% { opacity: 0; transform: translateX(100%); }
+                    100% { opacity: 1; transform: translateX(0); }
+                }
+            `;
+            
+            // Append styles and toast to body
+            document.head.appendChild(toastStyles);
+            document.body.appendChild(toast);
+            
+            // Remove toast after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(toast);
+                if (toastStyles.parentElement) {
+                    toastStyles.parentElement.removeChild(toastStyles);
+                }
+            }, 3000);
+        }
+
+        // Wishlist Functionality
+        function updateWishlistCount() {
+            const wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            const wishlistCountElement = document.getElementById('wishlist-count');
+            
+            if (wishlistCountElement) {
+                wishlistCountElement.textContent = wishlistItems.length;
+            }
+        }
+
+        function addToWishlist(productCard) {
+            // Get product details from the card
+            const image = productCard.querySelector('img').src;
+            const name = productCard.querySelector('h3').textContent;
+            const price = productCard.querySelector('p').textContent;
+            const id = Date.now(); // Generate unique ID
+
+            // Retrieve existing wishlist items from localStorage
+            let wishlistItems = JSON.parse(localStorage.getItem('wishlistItems')) || [];
+            
+            // Check if item is already in wishlist
+            const isAlreadyInWishlist = wishlistItems.some(item => item.name === name);
+            
+            if (!isAlreadyInWishlist) {
+                // Add the new item
+                wishlistItems.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    image: image
+                });
+                
+                // Save updated wishlist to localStorage
+                localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
+                
+                // Update wishlist count
+                updateWishlistCount();
+                
+                // Show toast notification
+                showToast('${name} added to wishlist');
+            } else {
+                // Show toast notification that item is already in wishlist
+                showToast('${name} is already in your wishlist');
+            }
+        }
+
+        // Category Filtering
+        function filterProducts(category) {
+            const productCards = document.querySelectorAll('.product-card');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+
+            // Remove active class from all buttons
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Find and activate the correct button
+            const activeButton = Array.from(categoryButtons).find(btn => 
+                btn.getAttribute('data-category') === category
+            );
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            // Filter products
+            productCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Add event listeners to Add to Cart buttons and category buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartButtons = document.querySelectorAll('.product-actions button:first-child');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    addToCart(productCard);
+                });
+            });
+
+            // Add event listeners to category buttons
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const category = button.getAttribute('data-category');
+                    filterProducts(category);
+                });
+            });
+
+            // Display all products by default
+            filterProducts('all');
+
+            // Update cart count on page load
+            updateCartCount();
+
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                // Create Wishlist button
+                const wishlistButton = document.createElement('button');
+                wishlistButton.innerHTML = '<i class="far fa-heart"></i>'; // Heart icon
+                wishlistButton.classList.add('wishlist-btn');
+                wishlistButton.addEventListener('click', function() {
+                    addToWishlist(card);
+                });
+
+                // Add Wishlist button to product actions
+                const productActions = card.querySelector('.product-actions');
+                if (productActions) {
+                    productActions.appendChild(wishlistButton);
+                }
+            });
+
+            // Update wishlist count on page load
+            updateWishlistCount();
+        });
+    </script>
+</body>
+</html>
